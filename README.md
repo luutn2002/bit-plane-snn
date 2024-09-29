@@ -40,7 +40,7 @@ img = Image.open(requests.get("https://dummyimage.com/500x400/ff6699/000", strea
 
 #Transform PIL images to tensor
 transform = torchvision.transforms.Compose([
-        PILToTensor(),
+        PILToTensor(), #Conver PIL to unnormalized tensor.
         torchvision.transforms.Resize((224, 224)),
     ])
 
@@ -50,7 +50,28 @@ encoder = MixedEncoder(T = 10, #Time step of rate coding
 encoded_tensor = encoder(tensor)
 ```
 
-### Step 2: Environment setup and repo download
+To only use the bit plane encoder, you can use:
+
+```python
+from bit_plane_encoder.transform import PILToTensor
+from bit_plane_encoder import BitplaneColorEncoder #Bit plane encode only
+from PIL import Image
+import requests
+import torchvision
+
+#Load image to PIL image
+img = Image.open(requests.get("https://dummyimage.com/500x400/ff6699/000", stream=True).raw)
+
+#Transform PIL images to tensor
+transform = torchvision.transforms.Compose([
+        PILToTensor(), #Conver PIL to unnormalized tensor.
+        torchvision.transforms.Resize((224, 224)),
+    ])
+
+tensor = transform(img)
+encoder = BitplaneColorEncoder(color_model ="rgb") #Selected color model information to be used, default to rgb.
+encoded_tensor = encoder(tensor)
+```
 
 ## Acknowledgement
 
