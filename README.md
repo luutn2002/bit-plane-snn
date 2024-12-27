@@ -1,7 +1,7 @@
 # bit-plane-snn
-The official repository of "Improving Spiking Neural Network Accuracy With Color Model Information Encoded Bit Planes", contain the mentioned hybrid encoder.
+The official repository of "Improvement of Spiking Neural Network with Bit Planes and Color Models", contain the mentioned hybrid encoder.
 
-[Paper]()
+[Paper](https://arxiv.org/abs/2410.08229)
 
 ## Quickstart
 
@@ -72,7 +72,11 @@ tensor = transform(img)
 encoder = BitplaneColorEncoder(color_model ="rgb") #Selected color model information to be used, default to rgb.
 encoded_tensor = encoder(tensor)
 ```
-
+Current supported color models include: RGB, CMY, YCbCr, HSL, HSV, LAB, XYZ
+```python
+color_models = ["rgb", "cmy", "ycbcr", "hsl", "hsv", "lab", "xyz"]
+encoder = BitplaneColorEncoder(color_model = color_models[0])
+```
 ## Acknowledgement
 
 Special thanks to [SpikingJelly](https://github.com/fangwei123456/spikingjelly) for their guides to SNN and [Kornia](https://github.com/kornia/kornia) for color conversion algorithm reference. 
@@ -80,5 +84,10 @@ Special thanks to [SpikingJelly](https://github.com/fangwei123456/spikingjelly) 
 ## Citation
 
 ```bibtex
-
+@article{luu2024improvement,
+  title={Improvement of Spiking Neural Network with Bit Planes and Color Models},
+  author={Luu, Nhan T and Luu, Duong T and Pham, Nam N and Truong, Thang C},
+  journal={arXiv preprint arXiv:2410.08229},
+  year={2024}
+}
 ```

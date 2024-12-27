@@ -1,4 +1,3 @@
-import sys
 import torch
 from torch import nn
 import math
@@ -163,75 +162,40 @@ class BitplaneColorEncoder(nn.Module):
         return torch.stack(res)
 
     def forward(self, x):
-        if sys.hexversion >= 0x030a00f0:
-            match self.color_model:
-                case "rgb": return self.binarize(x).float()
-                    
-                case "hsl":
-                    normalized = torch.div(x, 255.0)
-                    hsl = self.rgb2hsl_torch(normalized)
-                    return self.binarize(hsl, max=359).float()
-
-                case "hsv":
-                    normalized = torch.div(x, 255.0)
-                    hsv = self.rgb2hsv_torch(normalized)
-                    return self.binarize(hsv).float()
+        match self.color_model:
+            case "rgb": return self.binarize(x).float()
                 
-                case "cmy":
-                    normalized = torch.div(x, 255.0)
-                    cmy = self.rgb_to_cmy(normalized)
-                    return self.binarize(cmy).float()
-                
-                case "xyz":
-                    normalized = torch.div(x, 255.0)
-                    xyz = self.rgb_to_xyz(normalized, scale = True)
-                    return self.binarize(xyz, max=109).float()
-                
-                case "lab":
-                    normalized = torch.div(x, 255.0)
-                    lab = self.rgb_to_lab(normalized)
-                    return self.binarize(lab, max=128).float()
-                
-                case "ycbcr":
-                    normalized = torch.div(x, 255.0)
-                    lab = self.rgb_to_ycbcr(normalized, scale=True)
-                    return self.binarize(lab, max=240).float()
-                
-                case _: raise RuntimeError("Mode does not exist in encoder")
-        else:
-            if self.color_model == "rgb": return self.binarize(x).float()
-                    
-            elif self.color_model ==  "hsl":
+            case "hsl":
                 normalized = torch.div(x, 255.0)
                 hsl = self.rgb2hsl_torch(normalized)
                 return self.binarize(hsl, max=359).float()
 
-            elif self.color_model ==  "hsv":
+            case "hsv":
                 normalized = torch.div(x, 255.0)
                 hsv = self.rgb2hsv_torch(normalized)
                 return self.binarize(hsv).float()
             
-            elif self.color_model == "cmy":
+            case "cmy":
                 normalized = torch.div(x, 255.0)
-                cmy = self.rgb_to_cmy(normalized)
-                return self.binarize(cmy).float()
+                cmy = self.rgb_to_cmy(normalized, scale = True)
+                return self.binarize(cmy, max=100).float()
             
-            elif self.color_model == "xyz":
+            case "xyz":
                 normalized = torch.div(x, 255.0)
                 xyz = self.rgb_to_xyz(normalized, scale = True)
                 return self.binarize(xyz, max=109).float()
             
-            elif self.color_model == "lab":
+            case "lab":
                 normalized = torch.div(x, 255.0)
                 lab = self.rgb_to_lab(normalized)
                 return self.binarize(lab, max=128).float()
             
-            elif self.color_model == "ycbcr":
+            case "ycbcr":
                 normalized = torch.div(x, 255.0)
                 lab = self.rgb_to_ycbcr(normalized, scale=True)
                 return self.binarize(lab, max=240).float()
             
-            else: raise RuntimeError("Mode does not exist in encoder")
+            case _: raise RuntimeError("Mode does not exist in encoder")
 
 
 class MixedEncoder(nn.Module):
