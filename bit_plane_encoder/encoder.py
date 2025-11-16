@@ -153,12 +153,13 @@ class BitplaneColorEncoder(nn.Module):
 
         return out
     
-    def binarize(self, x, max=255):
+    def binarize(self, x, max=255, mode="MSB"):
         bit_per_channels = math.ceil(math.log2(max))
         res = []
         for _ in range(bit_per_channels):
             res.append(torch.remainder(x, 2))
             x = torch.div(x, 2, rounding_mode="floor")
+        if mode=="MSB": res.reverse()    
         return torch.stack(res)
 
     def forward(self, x):
