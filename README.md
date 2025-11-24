@@ -1,5 +1,6 @@
 # bit-plane-snn
 *Notes: work accepted for publication at IEEE Access*
+
 The official repository of "Improvement of Spiking Neural Network with Bit Planes and Color Models", contain the mentioned hybrid encoder.
 
 [Paper](https://ieeexplore.ieee.org/document/11261679)
