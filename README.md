@@ -1,7 +1,8 @@
 # bit-plane-snn
+*Notes: work accepted for publication at IEEE Access*
 The official repository of "Improvement of Spiking Neural Network with Bit Planes and Color Models", contain the mentioned hybrid encoder.
 
-[Paper](https://arxiv.org/abs/2410.08229)
+[Paper](https://ieeexplore.ieee.org/document/11261679)
 
 ## Quickstart
 
@@ -84,10 +85,14 @@ Special thanks to [SpikingJelly](https://github.com/fangwei123456/spikingjelly) 
 ## Citation
 
 ```bibtex
-@article{luu2024improvement,
-  title={Improvement of Spiking Neural Network with Bit Planes and Color Models},
-  author={Luu, Nhan T and Luu, Duong T and Pham, Nam N and Truong, Thang C},
-  journal={arXiv preprint arXiv:2410.08229},
-  year={2024}
-}
+@ARTICLE{11261679,
+  author={Luu, Nhan T. and Luu, Duong T. and Nam, Pham Ngoc and Thang, Truong Cong},
+  journal={IEEE Access}, 
+  title={Improvement of Spiking Neural Network With Bit Planes And Color Models}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-1},
+  keywords={Neurons;Image color analysis;Training;Spiking neural networks;Computational modeling;Tensors;Encoding;Biological system modeling;Deep learning;Membrane potentials;Spiking neural network;spike coding;image classification;bit planes;color models},
+  doi={10.1109/ACCESS.2025.3635297}}
 ```
